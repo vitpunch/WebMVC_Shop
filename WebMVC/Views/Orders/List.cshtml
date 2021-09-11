@@ -1,0 +1,32 @@
+﻿@model WebMVC.ViewModels.OrderListViewModel
+<h1>List</h1>
+<table>
+    <tr>
+        <td>id</td>
+        <td>user</td>
+        <td>adress</td>
+        <td>contact phone</td>
+        <td>model phone</td>
+    </tr>
+    @* @List<Product> phones=Model[0]; *@
+    @foreach (var order in Model.orders)
+    {
+        <tr>
+            <td>
+                @order.OrderId
+            </td>
+            <td>
+                @order.User
+            </td>
+            <td>
+                @order.Address
+            </td>
+            <td>
+                @order.ContactPhone
+            </td>
+            <td>
+                @Model.phones.Find(phones => { return phones.Id == order.ProductId;})?.Name.ToString();
+            </td>
+        </tr>
+    }
+</table>

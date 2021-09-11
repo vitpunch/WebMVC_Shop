@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebMVC.Models.Image>
+
+@{
+    ViewBag.Title = "Список изображений";
+    Layout = "_Layout";
+}
+
+<h1>@ViewBag.Title</h1>
+<table>
+    <tr>
+        <td>Картинка</td>
+        <td>Название</td>
+        <td>редактировать</td>
+    </tr>
+    @foreach (var image in Model)
+    {
+        <tr>
+            <td><img src="@image.UrlMiniature" alt="@image.Alt" width="50px"></td>
+            <td>@image.Name</td>
+            <td><a href="/admin/images/edit/@image.Id">редактировать</a></td>
+        </tr>
+    }
+</table>
