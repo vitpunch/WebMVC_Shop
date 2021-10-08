@@ -24,4 +24,15 @@
     <None Include="wwwroot\Images\picture.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Motalka.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages" />
+  </ItemGroup>
+
 </Project>
