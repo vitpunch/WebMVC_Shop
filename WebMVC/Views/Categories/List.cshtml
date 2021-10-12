@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebMVC.Models.Category>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+<table>
+    @foreach (var cat in Model)
+    {
+        <tr>
+            <td>@cat.Name</td>
+            <td>@((cat.Parent!=null)?(cat.Parent.Name):("нет родителя"))</td>
+            <td><a href="~/@ViewContext.RouteData.Values["controller"]?.ToString()?.ToLower()/edit/@cat.Id"> --> Редактировать</a></td>
+        </tr>
+    }
+</table>
