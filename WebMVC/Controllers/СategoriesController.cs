@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebMVC.Models;
@@ -12,11 +13,21 @@ namespace WebMVC.Controllers
         public CategoriesController(MobileContext context)
         {
             db = context;
+            OrderingCategories();
         }
 
         public ActionResult List()
         {
-            return View(db.Categories.ToList());
+            CategoriesSort CategoriesSort = new();
+            List<Category> categories = CategoriesSort.PrimarySort(db.Categories.ToList());
+            int i = 0;
+            foreach (var category in categories)
+            {
+                category.Ordering = i++;
+                db.Categories.Update(category);
+            }
+            db.SaveChanges();
+            return View(categories);
         }
         // GET: CategoriesController
         public ActionResult Index()
@@ -85,6 +96,15 @@ namespace WebMVC.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        private void OrderingCategories()
+        {
+            var categories = db.Categories.ToList();
+            foreach (var category in categories)
+            {
+                
             }
         }
     }

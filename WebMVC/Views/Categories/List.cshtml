@@ -11,7 +11,7 @@
     {
         <tr>
             <td>@cat.Name</td>
-            <td>@((cat.Parent!=null)?(cat.Parent.Name):("нет родителя"))</td>
+            <td>@((cat.Parent != null) ? (cat.Parent.Name) : ("нет родителя"))</td>
             <td><a href="~/@ViewContext.RouteData.Values["controller"]?.ToString()?.ToLower()/edit/@cat.Id"> --> Редактировать</a></td>
         </tr>
     }
