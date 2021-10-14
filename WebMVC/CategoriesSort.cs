@@ -5,46 +5,39 @@ namespace WebMVC
 {
     public class CategoriesSort
     {
-        public List<Category> PrimarySort(List<Category> categories)
+        private readonly Comparer _comparer = new();
+        public List<Category> HierarchyListSort(List<Category> categories)
         {
-            foreach (var category in categories)
-            {
-                if (category.Ordering != 0)
-                {
-                    categories.Sort(delegate(Category x, Category y)
-                    {
-                        return x.Ordering.CompareTo(y.Ordering);
-                    });
-                    return categories;
-                }
-            }
+            List<Category> resultList = new();
 
-            List<Category> newCategoryList=new();
-            foreach (var category in categories)
-            {
-                if (category.Parent == null)
-                {
-                    newCategoryList.Add(category);
-                    newCategoryList.AddRange(FindChildren(categories,category.Id));
-                }
-            }
-
-            return newCategoryList;
+            resultList.AddRange(FindChildren(categories, 0));
+            
+            return resultList;
         }
         List<Category> FindChildren(List<Category> categories, int parent)
         {
             List<Category> children = new();
+            List<Category> result = new();
             foreach (var category in categories)
             {
-                if(category.Parent==null)
+                if (category.Parent == null)
+                {
+                    if(parent==0)
+                        children.Add(category);
                     continue;
+                }
                 if (category.Parent.Id == parent)
                 {
                     children.Add(category);
-                    children.AddRange(FindChildren(categories,category.Id));
                 }
             }
-            return children;
+            children.Sort(_comparer);
+            foreach (var recurentChild in children)
+            {
+                result.Add(recurentChild);
+                result.AddRange(FindChildren(categories,recurentChild.Id));
+            }
+            return result;
         }
     }
 }

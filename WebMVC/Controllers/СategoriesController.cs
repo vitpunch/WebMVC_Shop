@@ -19,14 +19,7 @@ namespace WebMVC.Controllers
         public ActionResult List()
         {
             CategoriesSort CategoriesSort = new();
-            List<Category> categories = CategoriesSort.PrimarySort(db.Categories.ToList());
-            int i = 0;
-            foreach (var category in categories)
-            {
-                category.Ordering = i++;
-                db.Categories.Update(category);
-            }
-            db.SaveChanges();
+            var categories = CategoriesSort.HierarchyListSort(db.Categories.ToList());
             return View(categories);
         }
         // GET: CategoriesController
