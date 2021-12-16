@@ -11,5 +11,7 @@ namespace WebMVC.Models
         public string Name { get; set; }
         public Category Parent { get; set; }
         public int Ordering { get; set; }
+        public int Level { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

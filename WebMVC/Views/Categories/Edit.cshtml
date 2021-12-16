@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model List<Category> 
 
 @{
     ViewBag.Title = "title";
@@ -7,3 +7,6 @@
 
 <h2>title</h2>
 <p>редактируем категорию №@ViewBag.id</p>
+@Html.Editor("Name");
+@Html.Editor("Ordering");
+

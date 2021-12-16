@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebMVC.Helpers;
 using WebMVC.Models;
 
 namespace WebMVC.Controllers
@@ -13,7 +14,6 @@ namespace WebMVC.Controllers
         public CategoriesController(MobileContext context)
         {
             db = context;
-            OrderingCategories();
         }
 
         public ActionResult List()
@@ -56,7 +56,7 @@ namespace WebMVC.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.id = id;
-            return View();
+            return View(db.Categories.ToList());
         }
         // POST: CategoriesController/Edit/5
         [HttpPost]
@@ -92,13 +92,5 @@ namespace WebMVC.Controllers
             }
         }
 
-        private void OrderingCategories()
-        {
-            var categories = db.Categories.ToList();
-            foreach (var category in categories)
-            {
-                
-            }
-        }
     }
 }

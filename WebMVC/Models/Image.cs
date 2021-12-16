@@ -14,5 +14,7 @@ namespace WebMVC.Models
         public string UrlMiniature { get; set; }
         public string Alt { get; set; }
         public string Title { get; set; }
+        public Product? Product { get; set; }
+        public int ProductId { get; set; }
     }
 }

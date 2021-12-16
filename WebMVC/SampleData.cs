@@ -1,4 +1,6 @@
-﻿using WebMVC.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using WebMVC.Models;
 
 namespace WebMVC
 {
@@ -6,29 +8,21 @@ namespace WebMVC
     {
         public static void Initialize(MobileContext context)
         {
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+            Category smartphones = new Category { Name = "Смартфоны" };
+            Category lopats =new Category{Name = "Лопаты"};
+            context.Categories.AddRange(smartphones,lopats);
+            context.SaveChanges();
 
-                // context.Products.AddRange(
-                //     new Product
-                //     {
-                //         Name = "Vivo 1920",
-                //         Company = "Vivo",
-                //         Price = 900
-                //     },
-                //     new Product
-                //     {
-                //         Name = "Huawei Y6s",
-                //         Company = "Huawei",
-                //         Price = 550
-                //     },
-                //     new Product
-                //     {
-                //         Name = "Pixel 4",
-                //         Company = "Google",
-                //         Price = 500
-                //     }
-                // );
-                // context.SaveChanges();
-            
+            Product samsung = new Product { Name = "samsung", Categories = new List<Category>{ lopats, smartphones } };
+            Product huawey = new Product { Name = "Huawei", Categories = new List<Category> { smartphones } };
+            Product vivo = new Product { Name = "vivo", Price = 2500, Categories = new List<Category> { lopats } };
+            context.Products.AddRange(huawey,samsung,vivo);
+            context.SaveChanges();
+
+
+
         }
     }
 }

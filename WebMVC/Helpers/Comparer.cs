@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WebMVC.Models;
 
-namespace WebMVC
+namespace WebMVC.Helpers
 {
     public  class Comparer : IComparer<Category>
     {
@@ -12,7 +12,5 @@ namespace WebMVC
                 result = a.Name.CompareTo(b.Name);
             return result;
         }
-
-
     }
 }

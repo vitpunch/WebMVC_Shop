@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using WebMVC.Models;
 
-namespace WebMVC
+namespace WebMVC.Helpers
 {
     public class CategoriesSort
     {
@@ -9,12 +9,10 @@ namespace WebMVC
         public List<Category> HierarchyListSort(List<Category> categories)
         {
             List<Category> resultList = new();
-
             resultList.AddRange(FindChildren(categories, 0));
-            
             return resultList;
         }
-        List<Category> FindChildren(List<Category> categories, int parent)
+        IEnumerable<Category> FindChildren(List<Category> categories, int parent)
         {
             List<Category> children = new();
             List<Category> result = new();

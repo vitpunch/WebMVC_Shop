@@ -10,8 +10,8 @@ namespace WebMVC.Models
         public int Price { get; set; }
         public int InStock { get; set; }
         public int Reserved { get; set; }
-        public List<Category> Categories {get;set;}
-        public List<Image> Images { get; set; }
+        public List<Category> Categories { get; set; } = new();
+        public List<Image> Images { get; set; } = new();
 
     }
 }

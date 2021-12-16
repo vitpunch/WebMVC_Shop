@@ -10,8 +10,17 @@
     @foreach (var cat in Model)
     {
         <tr>
-            <td>@cat.Name</td>
-            <td>@((cat.Parent != null) ? (cat.Parent.Name) : ("нет родителя"))</td>
+            <td>
+                @for (int i = 0; i < cat.Level; i++)
+                    {
+                        @:&nbsp;
+                    }
+                @if (cat.Level != 0)
+                {
+                    @:<sup>|_</sup>&nbsp;
+                }
+                @cat.Name</td>
+
             <td><a href="~/@ViewContext.RouteData.Values["controller"]?.ToString()?.ToLower()/edit/@cat.Id"> --> Редактировать</a></td>
         </tr>
     }

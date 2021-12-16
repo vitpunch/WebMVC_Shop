@@ -12,7 +12,7 @@ namespace WebMVC.Models
         public MobileContext(DbContextOptions<MobileContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            // Database.EnsureCreated();
         }
     }
 }
